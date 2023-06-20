@@ -7,4 +7,7 @@ class Section(Base):
     
     class Meta:
         ordering = ['name']
+        
+    def get_default_section():
+        return Section.objects.get_or_create(name='No Section')[0]
     
