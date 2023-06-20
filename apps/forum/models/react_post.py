@@ -5,8 +5,9 @@ from . import Base, PostBase, Reaction
 class ReacPost(Base):
     post = models.ForeignKey(PostBase, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post_type = models.ForeignKey(Reaction, on_delete=models.SET_NULL, null=True)
+    post_reaction = models.ForeignKey(Reaction, on_delete=models.SET())
     
     class Meta:
         ordering = ['-post']
+        unique_together = ('post', 'user')
         
