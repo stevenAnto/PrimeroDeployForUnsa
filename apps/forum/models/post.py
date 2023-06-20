@@ -1,7 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-from . import Base, PostBase, Tag, Section, PostType
+from . import Base, Tag, Section
+from .custom_user import CustomUser
+
+
+class PostBase(Base):
+    user = models.ForeignKey(User, on_delete=models.SET(CustomUser.get_deleted_user)) # if User deleted set certain User
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+
+class PostType(Base):
+    name = models.CharField(max_length=64, unique=True)
+    
+    class Meta:
+        ordering = ['name']
 
 class Post(PostBase, Base):
     title = models.CharField(max_length=128)

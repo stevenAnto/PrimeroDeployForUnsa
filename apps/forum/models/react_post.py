@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from . import Base, PostBase, Reaction
+from . import Base
+from .post import PostBase
+from .reaction import Reaction
 
 class ReactPost(Base):
     post = models.ForeignKey(PostBase, on_delete=models.CASCADE)

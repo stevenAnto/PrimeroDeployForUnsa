@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from . import Base, PostBase
+from . import Base
+from .post import PostBase
 
 class SavePost(Base):
     post = models.ForeignKey(PostBase, on_delete=models.CASCADE)
