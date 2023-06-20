@@ -7,3 +7,6 @@ class Base(models.Model):
         ('X', 'Deleted'),
     )
     state = models.CharField(max_length=1, choices=STATE_CHOICES, default='A')
+    
+    class Meta:
+        abstract = True
