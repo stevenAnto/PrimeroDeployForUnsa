@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from . import Base
 
 class School(Base):
@@ -10,4 +11,8 @@ class School(Base):
     
     def get_default_school():
         return School.objects.get_or_create(name='Not defined school')[0]
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(School, self).save(*args, **kwargs)
     

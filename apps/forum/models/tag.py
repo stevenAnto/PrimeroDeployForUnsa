@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from . import Base
 
 class Tag(Base):
@@ -8,3 +9,6 @@ class Tag(Base):
     class Meta:
         ordering = ['name']
     
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Tag, self).save(*args, **kwargs)

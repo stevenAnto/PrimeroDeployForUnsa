@@ -6,7 +6,7 @@ class Report(Base):
     post = models.ForeignKey(BasePost, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     information = models.TextField(max_length=1024)
-    slug = models.SlugField(max_length=64, unique=True) # slug for links
+    # slug = models.SlugField(max_length=64, unique=True) # slug for links, removed for requirements
     
     class Meta:
         ordering = ['-post']

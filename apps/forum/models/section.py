@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from . import Base
 
 class Section(Base):
@@ -10,4 +11,8 @@ class Section(Base):
         
     def get_default_section():
         return Section.objects.get_or_create(name='No Section')[0]
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Section, self).save(*args, **kwargs)
     

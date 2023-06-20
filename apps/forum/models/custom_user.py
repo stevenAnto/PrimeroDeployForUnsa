@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from . import Base, Status, School
 
 class CustomUser(User, Base):
@@ -15,3 +16,6 @@ class CustomUser(User, Base):
     def get_deleted_user():
         return CustomUser.objects.get_or_create(username="Deleted", )[0]
     
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.username)
+        super(User, self).save(*args, **kwargs)
