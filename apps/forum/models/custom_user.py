@@ -10,7 +10,7 @@ class CustomUser(User, Base):
     img = models.ImageField(upload_to='profiles', default='default.jpg')
     is_featured = models.BooleanField(default=False) # user is featured
     semester = models.CharField(max_length=32, default='not defined') # inital semester
-    status = models.ForeignKey(Status, on_delete=models.SET_DEFAULT, default=Status.get_default_status) # Grade status
+    status = models.ForeignKey(Status, on_delete=models.SET_DEFAULT, default=Status.get_default_status) # banned, active, inactive in session
     slug = models.SlugField(max_length=64, unique=True, editable=False) # slug for links
     
     def get_deleted_user():

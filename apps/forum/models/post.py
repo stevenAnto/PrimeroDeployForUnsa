@@ -12,7 +12,7 @@ class PostBase(Base):
     
 
 class PostType(Base):
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=64, unique=True) # I mean is a question or advice or general information
     
     class Meta:
         ordering = ['name']
@@ -27,7 +27,7 @@ class Post(PostBase, Base):
     file = models.FileField(upload_to='posts', blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     section = models.ForeignKey(Section, on_delete=models.SET_DEFAULT, default=Section.get_default_section) # If deleted section, then set default
-    post_type = models.ForeignKey(PostType, on_delete=models.SET_DEFAULT, default=PostType.get_default_type) # To MODIFY in MODEL
+    post_type = models.ForeignKey(PostType, on_delete=models.SET_DEFAULT, default=PostType.get_default_type) # To MODIFY in MODEL, if is a question or advice, etc
     rate = models.BigIntegerField(default=0) # number of votes for this post
     slug = models.SlugField(max_length=64, unique=True, editable=False) # slug for links
     
