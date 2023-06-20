@@ -12,6 +12,4 @@ class CustomUser(User, Base):
     status = models.ForeignKey(Status, on_delete=models.SET_NULL) # Grade status
     slug = models.SlugField(max_length=64, unique=True) # slug for links
     
-    class Meta:
-        ordering = ['name']
     
