@@ -8,3 +8,6 @@ class School(Base):
     class Meta:
         ordering = ['name']
     
+    def get_default_school():
+        return School.objects.get_or_create(name='No defined school')[0]
+    
