@@ -8,5 +8,5 @@ class ReacPost(Base):
     post_type = models.ForeignKey(Reaction, on_delete=models.SET_NULL, null=True)
     
     class Meta:
-        ordering = ['.post']
+        ordering = ['-post']
         

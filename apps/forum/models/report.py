@@ -9,5 +9,5 @@ class Report(Base):
     slug = models.SlugField(max_length=64, unique=True) # slug for links
     
     class Meta:
-        ordering = ['post']
+        ordering = ['-post']
         
