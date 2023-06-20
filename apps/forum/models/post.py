@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from . import Base, PostBase, Tag, Section, PostType
 
 class Post(PostBase, Base):
-    title = models.CharField(max_length=128, blank=True) 
+    title = models.CharField(max_length=128, blank=True)
+    content = models.TextField(max_length=255)
     img = models.ImageField(upload_to='posts') 
     file = models.FileField(upload_to='posts')
     tags = models.ManyToManyField(Tag, blank=True)
