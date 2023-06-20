@@ -9,7 +9,7 @@ class Post(Base):
     file = models.FileField(upload_to='posts')
     tags = models.ManyToManyField(Tag, blank=True)
     section = models.ForeignKey(Section, on_delete=models.SET_DEFAULT, default=Section.get_default_section) # If deleted section, then set default
-    post_type = models.ForeignKey(PostType, on_delete=models.SET_NULL, null=True) 
+    post_type = models.ForeignKey(PostType, on_delete=models.SET_NULL, null=True) # To MODIFY in MODEL
     rate = models.BigIntegerField(default=0) # number of votes for this post
     slug = models.SlugField(max_length=64, unique=True) # slug for links
     

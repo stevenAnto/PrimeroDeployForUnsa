@@ -9,5 +9,5 @@ class School(Base):
         ordering = ['name']
     
     def get_default_school():
-        return School.objects.get_or_create(name='No defined school')[0]
+        return School.objects.get_or_create(name='Not defined school')[0]
     
