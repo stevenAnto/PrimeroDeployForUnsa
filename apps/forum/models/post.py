@@ -16,17 +16,20 @@ class PostType(Base):
     
     class Meta:
         ordering = ['name']
+        
+    def get_default_type():
+        return PostType.objects.get_or_create(name='Default type')[0].id
 
 class Post(PostBase, Base):
     title = models.CharField(max_length=128)
     content = models.TextField(max_length=255, blank=True)
-    img = models.ImageField(upload_to='posts') 
-    file = models.FileField(upload_to='posts')
+    img = models.ImageField(upload_to='posts', blank=True) 
+    file = models.FileField(upload_to='posts', blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     section = models.ForeignKey(Section, on_delete=models.SET_DEFAULT, default=Section.get_default_section) # If deleted section, then set default
-    post_type = models.ForeignKey(PostType, on_delete=models.SET_NULL, null=True) # To MODIFY in MODEL
+    post_type = models.ForeignKey(PostType, on_delete=models.SET_DEFAULT, default=PostType.get_default_type) # To MODIFY in MODEL
     rate = models.BigIntegerField(default=0) # number of votes for this post
-    slug = models.SlugField(max_length=64, unique=True) # slug for links
+    slug = models.SlugField(max_length=64, unique=True, editable=False) # slug for links
     
     class Meta:
         ordering = ['-rate']

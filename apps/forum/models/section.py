@@ -4,7 +4,7 @@ from . import Base
 
 class Section(Base):
     name = models.CharField(max_length=64, unique=True)
-    slug = models.SlugField(max_length=64, unique=True) # slug for links
+    slug = models.SlugField(max_length=64, unique=True, editable=False) # slug for links
     
     class Meta:
         ordering = ['name']

@@ -11,7 +11,7 @@ class CustomUser(User, Base):
     is_featured = models.BooleanField(default=False) # user is featured
     semester = models.CharField(max_length=32, default='not defined') # inital semester
     status = models.ForeignKey(Status, on_delete=models.SET_DEFAULT, default=Status.get_default_status) # Grade status
-    slug = models.SlugField(max_length=64, unique=True) # slug for links
+    slug = models.SlugField(max_length=64, unique=True, editable=False) # slug for links
     
     def get_deleted_user():
         return CustomUser.objects.get_or_create(username="Deleted", )[0]
