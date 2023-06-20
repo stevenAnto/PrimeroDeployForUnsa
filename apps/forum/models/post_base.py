@@ -8,5 +8,5 @@ class PostBase(Base):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        ordering = ['-rate']
+        abstract = True
     

@@ -1,9 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from . import Base, CustomUser, Tag, Section, PostType
+from . import Base, PostBase, Tag, Section, PostType
 
-class Post(Base):
-    user = models.ForeignKey(User, on_delete=models.SET(CustomUser.get_deleted_user)) # if User deleted set certain User
+class Post(PostBase, Base):
     title = models.CharField(max_length=128, blank=True) 
     img = models.ImageField(upload_to='posts') 
     file = models.FileField(upload_to='posts')
