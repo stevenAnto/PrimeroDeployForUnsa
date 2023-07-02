@@ -85,8 +85,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost:5432/mysite',
-            conn_max_age=600    )
+            #admin es la contrasenia
+            default='postgresql://postgres:admin@localhost:5432/forunsadb',
+            conn_max_age=600,
+            engine='django.db.backends.postgresql',
+            )
         }
 
 """
